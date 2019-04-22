@@ -388,12 +388,13 @@ def run_align(input_list, archive=False, clobber=False, debug=False, update_hdr_
 
         for imgname in extracted_sources.keys():
             table = extracted_sources[imgname]["catalog_table"]
+            print('Table: ', table)
 
             # Get the location of the current image in the filtered table
             index = np.where(filtered_table['imageName'] == imgname)[0][0]
 
             # First ensure sources were found
-            if table[1] is None:
+            if table is None:
                 log.warning("No sources found in image {}".format(imgname))
                 filtered_table[:]['status'] = 1
                 filtered_table[:]['processMsg'] = "No sources found"

@@ -59,8 +59,8 @@ def test_randomlist(tmpdir, dataset):
             statistical sample (70%) of ACS and WFC3 datasets were able to be
             aligned to within 10mas RMS.
               * RMS values are extracted from the table output from `perform_align`
-              * This criterion will need to be determined by the user after the test has been run based
-                on how many datasets were run and skipped.
+              * This criterion will need to be determined by the user after the test has been
+                run based on how many datasets were run and skipped.
 
         The input master_list CSV file is
         output from a database and lists associations and singletons for ACS
@@ -68,9 +68,14 @@ def test_randomlist(tmpdir, dataset):
         downloaded from MAST via astroquery.
 
         This test file can be executed in the following manner:
-            $ pytest -s --basetemp=/internal/pytest-processing --bigdata --slow --master_list ACSWFC3List.csv --start_row 0 --num_rows 50 test_randomlist.py >& test_random_output.txt &
+            $ pytest -n # -s --basetemp=/internal/hladata/yourUniqueDirectoryHere --bigdata --slow
+              --master_list ACSWFC3List.csv --start_row 0 --num_rows 50 test_randomlist.py >&
+              test_random_output.txt &
             $ tail -f test_random_output.txt
-        The `-n` option can be used to run tests in parallel if `pytest-xdist` has been installed.
+          * The `-n #` option can be used to run tests in parallel if `pytest-xdist` has
+            been installed where `#` is the number of cpus to use.
+          * Note: When running this test, the `--basetemp` directory should be set to a unique
+            existing directory to avoid deleting previous test output.
 
     """
     print("TEST_RANDOM. Dataset: ", dataset)
@@ -100,7 +105,7 @@ def test_randomlist(tmpdir, dataset):
 
         # Filtered datasets
         if dataset_table['doProcess'].sum() == 0:
-            pytest.skip("TEST_RANDOM. Filtered Dataset: {}".format(dataset))
+            pytest.skip("TEST_RANDOM. Filtered Dataset: {}.".format(dataset))
         # Datasets to process
         elif dataset_table['doProcess'].sum() > 0:
             # Determine images in dataset to be processed and the number of images
@@ -113,9 +118,9 @@ def test_randomlist(tmpdir, dataset):
             dataset_table.write(output_name, format='ascii.ecsv')
 
             if fit_qual > 4:
-                pytest.fail("TEST_RANDOM. Unsuccessful Dataset (fit_qual = 5): ".format(dataset))
+                pytest.fail("TEST_RANDOM. Unsuccessful Dataset (fit_qual = 5): {}.".format(dataset))
             else:
-                assert fit_qual <= 4
+                assert 0 < fit_qual <= 4
 
     # Catch anything that happens as this dataset will be considered a failure, but
     # the processing of datasets should continue.  This is meant to catch
@@ -123,7 +128,7 @@ def test_randomlist(tmpdir, dataset):
     # information so algorithmic problems can be addressed.
     except Exception as except_details:
         print(except_details)
-        pytest.fail("TEST_RANDOM. Exception Dataset: {}", dataset, "\n")
+        pytest.fail("TEST_RANDOM. Exception Dataset: {}\n", dataset)
 
     finally:
         # Perform some clean up
