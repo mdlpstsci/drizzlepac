@@ -38,13 +38,13 @@ __version_date__ = '07-Nov-2019'
 
 def create_catalog_products(total_list, diagnostic_mode=False, phot_mode='both'):
     """This subroutine utilizes hlautils/catalog_utils module to produce photometric sourcelists for the specified
-    total drizzle product and it's associated child filter products.
+    total drizzle product and it's associated filter products.
 
     Parameters
     ----------
     total_list : drizzlepac.hlautils.Product.TotalProduct
         total drizzle product that will be processed by catalog_utils. catalog_utils will also create photometric
-        sourcelists for the child filter products of this total product.
+        sourcelists for the filter products of this total product.
 
     diagnostic_mode : bool, optional
         generate ds9 region file counterparts to the photometric sourcelists? Default value is False.
@@ -114,7 +114,7 @@ def create_catalog_products(total_list, diagnostic_mode=False, phot_mode='both')
                     'Flags_{}'.format(filter_product_obj.filters)] = \
                 filter_product_catalogs.catalogs[cat_type].source_cat['Flags']
 
-            log.info("Writing out filter product catalog")
+            log.info("Writing out filter product catalogs")
             # Write out photometric (filter) catalog(s)
             filter_product_catalogs.write()
 
