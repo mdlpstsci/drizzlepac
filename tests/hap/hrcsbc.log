@@ -1,0 +1,49 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.9.16, pytest-7.4.0, pluggy-1.2.0
+rootdir: /Users/mdelapena/repository/drizzlepac
+configfile: pyproject.toml
+plugins: asdf-2.15.0, ci-watson-0.6.1
+
+
+collected 0 items / 1 error
+
+==================================== ERRORS ====================================
+________________ ERROR collecting tests/hap/test_svm_hrcsbc.py _________________
+invalid method signature
+
+During handling of the above exception, another exception occurred:
+Could not determine arguments of <bound method TestSVMHrcSbc.read_csv_for_filenames of <tests.hap.test_svm_hrcsbc.TestSVMHrcSbc object at 0x141a288e0>>: invalid method signature
+=============================== warnings summary ===============================
+../../../../miniconda3/envs/caldp_20230613/lib/python3.9/site-packages/pkg_resources/__init__.py:121
+  /Users/mdelapena/miniconda3/envs/caldp_20230613/lib/python3.9/site-packages/pkg_resources/__init__.py:121: DeprecationWarning: pkg_resources is deprecated as an API
+    warnings.warn("pkg_resources is deprecated as an API", DeprecationWarning)
+
+../../../../miniconda3/envs/caldp_20230613/lib/python3.9/site-packages/pkg_resources/__init__.py:2870
+  /Users/mdelapena/miniconda3/envs/caldp_20230613/lib/python3.9/site-packages/pkg_resources/__init__.py:2870: DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('mpl_toolkits')`.
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    declare_namespace(pkg)
+
+../../../../miniconda3/envs/caldp_20230613/lib/python3.9/site-packages/pkg_resources/__init__.py:2870
+../../../../miniconda3/envs/caldp_20230613/lib/python3.9/site-packages/pkg_resources/__init__.py:2870
+../../../../miniconda3/envs/caldp_20230613/lib/python3.9/site-packages/pkg_resources/__init__.py:2870
+../../../../miniconda3/envs/caldp_20230613/lib/python3.9/site-packages/pkg_resources/__init__.py:2870
+  /Users/mdelapena/miniconda3/envs/caldp_20230613/lib/python3.9/site-packages/pkg_resources/__init__.py:2870: DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('sphinxcontrib')`.
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    declare_namespace(pkg)
+
+../../../../miniconda3/envs/caldp_20230613/lib/python3.9/site-packages/pkg_resources/__init__.py:2870
+../../../../miniconda3/envs/caldp_20230613/lib/python3.9/site-packages/pkg_resources/__init__.py:2870
+  /Users/mdelapena/miniconda3/envs/caldp_20230613/lib/python3.9/site-packages/pkg_resources/__init__.py:2870: DeprecationWarning: Deprecated call to `pkg_resources.declare_namespace('stsci')`.
+  Implementing implicit namespace packages (as specified in PEP 420) is preferred to `pkg_resources.declare_namespace`. See https://setuptools.pypa.io/en/latest/references/keywords.html#keyword-namespace-packages
+    declare_namespace(pkg)
+
+../../../../miniconda3/envs/caldp_20230613/lib/python3.9/site-packages/stsci/tools/stpyfits.py:20
+../../../../miniconda3/envs/caldp_20230613/lib/python3.9/site-packages/stsci/tools/stpyfits.py:20
+  /Users/mdelapena/miniconda3/envs/caldp_20230613/lib/python3.9/site-packages/stsci/tools/stpyfits.py:20: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    ASTROPY_VER_GE32 = LooseVersion(astropy.__version__) >= LooseVersion('3.2')
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+ERROR test_svm_hrcsbc.py::TestSVMHrcSbc - Failed: Could not determine argumen...
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+======================== 10 warnings, 1 error in 4.51s =========================

@@ -1,0 +1,10 @@
+test_align.py:    pytest.skip("Skipping all tests using astroquery.", allow_module_level=True)
+
+test_apriori.py:pytest.skip("Skipping all tests using astroquery as an experiment", allow_module_level=True)
+
+test_pipeline.py:pytest.skip("Skipping all tests not updated to eliminate the use of deprecated software.", allow_module_level=True)
+
+
+- test_alignpipe_randomlist.py:pytest.skip("Skipping all tests where files to be processed are not known in advance.", allow_module_level=True)
+- test_randomlist.py:pytest.skip("Skipping all tests where files to be processed are not known in advance.", allow_module_level=True)
+- test_run_svmpoller.py:pytest.skip("Skipping all tests where files to be processed are not known in advance.", allow_module_level=True)

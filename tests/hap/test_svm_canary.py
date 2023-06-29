@@ -11,6 +11,7 @@ from drizzlepac.haputils import astroquery_utils as aqutils
 from drizzlepac import runsinglehap
 from astropy.io import fits, ascii
 from pathlib import Path
+from ci_watson.artifactory_helpers import get_bigdata
 
 """
     test_svm_demo.py
@@ -43,51 +44,11 @@ def gather_data_for_processing(tmp_path_factory):
     curdir = tmp_path_factory.mktemp(os.path.basename(__file__))
     os.chdir(curdir)
 
-    # Establish FLC/FLT lists and obtain the requested data
-    flc_flag = ""
-    flt_flag = ""
-    # In order to obtain individual FLC or FLT images from MAST (if the files are not reside on disk) which
-    # may be part of an ASN, use only IPPPSS with a wildcard.  The unwanted images have to be removed
-    # after-the-fact.
-    filenames = read_csv_for_filenames()
+    # Get the data from Artifactory
+    inputs = [os.path.basename(get_bigdata('drizzlepac', 'dev', 'wfc3', 'input', i))
+              for i in read_csv_for_filenames]
 
-    for fn in filenames:
-        if fn.lower().endswith("flc.fits") and flc_flag == "":
-            flc_flag = fn[0:6] + "*"
-        elif fn.lower().endswith("flt.fits") and flt_flag == "":
-            flt_flag = fn[0:6] + "*"
-
-        # If both flags have been set, then break out the loop early.  It may be
-        # that all files have to be checked which means the for loop continues
-        # until its natural completion.
-        if flc_flag and flt_flag:
-            break
-
-    # Get test data through astroquery - only retrieve the pipeline processed FLC and/or FLT files
-    # (e.g., j*_flc.fits) as necessary. The logic here and the above for loop is an attempt to
-    # avoid downloading too many images which are not needed for processing.
-    flcfiles = []
-    fltfiles = []
-    if flc_flag:
-        flcfiles = aqutils.retrieve_observation(flc_flag, suffix=["FLC"], product_type="pipeline")
-    if flt_flag:
-        fltfiles = aqutils.retrieve_observation(flt_flag, suffix=["FLT"], product_type="pipeline")
-
-    flcfiles.extend(fltfiles)
-
-    # Keep only the files which exist in BOTH lists for processing
-    files_to_process = set(filenames).intersection(set(flcfiles))
-
-    # Identify unwanted files from the download list and remove from disk
-    files_to_remove = set(filenames).symmetric_difference(set(flcfiles))
-    try:
-        for ftr in files_to_remove:
-            os.remove(ftr)
-    except Exception as x_cept:
-        print("")
-        print("Exception encountered: {}.".format(x_cept))
-        print("The file {} could not be deleted from disk. ".format(ftr))
-        print("Remove files which are not used for processing from disk manually.")
+    files_to_process = read_csv_for_filenames
 
     print("\ngather_data_for_processing. Gathered data: {}".format(files_to_process))
 
