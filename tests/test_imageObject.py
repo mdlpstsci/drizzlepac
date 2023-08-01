@@ -14,7 +14,7 @@ def forall_cases(cases):
     return decorate
 
 
-@pytest.mark.xfail(reason="Broken")
+#@pytest.mark.xfail(reason="Broken")
 class TestimageObject():
     """test the implementation of imageObject by creating and examining an object
        from an image file thats on disk
