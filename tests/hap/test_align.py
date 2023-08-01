@@ -90,7 +90,8 @@ class TestAlignMosaic(BaseHLATest):
 
         assert 0.0 < total_rms <= RMS_LIMIT
 
-    @pytest.mark.slow
+    # @pytest.mark.slow
+    @pytest.mark.bigdata
     def test_align_47tuc(self):
         """ Verify whether 47Tuc exposures can be aligned to an astrometric standard.
 
@@ -258,4 +259,3 @@ class TestAlignMosaic(BaseHLATest):
             total_rms = dataset_table.filtered_table['total_rms'][0]
 
         assert 0.0 < total_rms <= RMS_LIMIT
-
