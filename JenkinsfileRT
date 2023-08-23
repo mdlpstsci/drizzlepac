@@ -11,7 +11,7 @@ jobconfig.credentials = [
     ]
 jobconfig.post_test_summary = true
 
-// Configure artifactory ingest
+// Configure Artifactory ingest
 data_config = new DataConfig()
 data_config.server_id = 'bytesalad'
 data_config.root = 'clone/tests_output'
