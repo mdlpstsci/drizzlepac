@@ -22,6 +22,9 @@ number of the code change for that issue.  These PRs can be viewed at:
 ==================
 
 - Added new header keywords and match requirements for relative fitting. [#1860]
+
+- Further changes/tuning to improve the alignment results after deprecated Photutils
+  functionality was upgraded. [#nnnn]
   
 
 3.9.0 (16-Dec-2024)
